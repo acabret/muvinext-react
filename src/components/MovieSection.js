@@ -1,22 +1,28 @@
 import styled from "styled-components";
 import MovieSplash from "./MovieSplash";
 
-const MovieWrapper = styled.div`
+const MoviesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   padding: 1rem;
   background-color: red;
+`;
+
+const SectionTitle = styled.h3`
+    font-size: 1.4rem;
+    margin-bottom: .75rem;
 `;
 
 const MovieSection = ({ sectionTitle, movies }) => {
   return (
     <section>
-      <h2>{sectionTitle}</h2>
-      <MovieWrapper>
+      <SectionTitle>{sectionTitle}</SectionTitle>
+      <MoviesWrapper>
         {movies.map((movie) => (
           <MovieSplash key={movie.id} movie={movie} />
         ))}
-      </MovieWrapper>
+      </MoviesWrapper>
     </section>
   );
 };

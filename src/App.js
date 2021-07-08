@@ -17,12 +17,12 @@ function App() {
       setGenres(genres.concat(data.genres));
       setSections(sections.concat(data.sections));
     });
-  }, []);
+  }, [appLanguage]);
 
   return (
     <div>
       {sections.map((section) => (
-        <MovieSection key={section.id} movies={section.movies} />
+        <MovieSection key={section.id} sectionTitle={section.name} movies={section.movies} />
       ))}
     </div>
   );
