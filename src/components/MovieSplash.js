@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import baseImageUrl, {imageSizes} from "../utils/config"
 
 const Wrapper = styled.article`
   flex: 0 0 11.5rem;
@@ -8,7 +9,7 @@ const Wrapper = styled.article`
 `;
 const MovieImage = styled.div`
   position: relative;
-  background: ${() => ""};
+  background: url(${({ movie }) => ""});
   height: 17.125rem;
   width: 11.5rem;
 `;
@@ -17,10 +18,12 @@ const MovieScore = styled.div`
   position: absolute;
 `;
 
+
 const MovieSplash = ({ movie }) => {
   return (
     <Wrapper>
       <MovieImage>
+        {movie.poster_path}
         <MovieScore />
       </MovieImage>
       <h3>{movie.title}</h3>
