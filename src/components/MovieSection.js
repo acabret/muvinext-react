@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MovieSplash from "./MovieSplash";
+import MovieCover from "./MovieCover";
 
 const MoviesWrapper = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const MovieSection = ({ sectionTitle, movies }) => {
       <SectionTitle>{sectionTitle}</SectionTitle>
       <MoviesWrapper>
         {movies.map((movie) => (
-          <MovieSplash key={movie.id} movie={movie} />
+          <MovieCover key={movie.id} movie={movie} />
         ))}
       </MoviesWrapper>
     </section>

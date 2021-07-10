@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:4000/api/";
 
-export const initDataApp = ({ language }) => {
+export const initAppData = ({ language }) => {
   return fetch(`${baseUrl}movies/init`)
     .then((response) => {
       if (response.status === 200) {
