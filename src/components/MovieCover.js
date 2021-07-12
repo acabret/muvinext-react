@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
 
 const Wrapper = styled.article`
-  flex: 0 0 11.5rem;
+  /* flex: 0 0 11.5rem; */
   background-color: gray;
+  width: 11rem;
   // height: 21.875rem;
   margin: 1rem;
 `;
@@ -13,8 +14,9 @@ const MovieImage = styled.div`
     `${baseImageUrl}${imageSizes.small}${poster_path}`});
   background-position: center;
   background-size: cover;
-  height: 17.125rem;
-  width: 11.5rem;
+  padding-top: calc( 100% * 16/11);
+  /* height: 17.125rem; */
+  width: 100%;
 `;
 
 const MovieScoreWrapper = styled.div`
@@ -31,6 +33,12 @@ const MovieScore = styled.span`
   /* color: #fff; */
   font-weight: bold;
 `;
+const MovieTitle = styled.h3`
+  font-size: 1rem ;
+
+
+
+`;
 
 const MovieCover = ({ movie }) => {
   return (
@@ -40,7 +48,7 @@ const MovieCover = ({ movie }) => {
           <MovieScore>{Number(movie.vote_average).toFixed(1)}</MovieScore>
         </MovieScoreWrapper>
       </MovieImage>
-      <h3>{movie.title}</h3>
+      <MovieTitle>{movie.title}</MovieTitle>
     </Wrapper>
   );
 };
