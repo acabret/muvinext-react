@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import Select from "react-select";
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
 import { useState, useEffect } from "react";
+
+// const createSliderWithTooltip = Slider.createSliderWithTooltip;
+// const Range = createSliderWithTooltip(Slider.Range)
 
 const Wrapper = styled.main`
   display: flex;
@@ -10,12 +15,17 @@ const Wrapper = styled.main`
 const SearchWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  width: 60%;
+  @media (min-width: 768px) {
+    width: 300px;
+  }
 `;
 
 const MovieSearch = (props) => {
   const [genres, setGenres] = useState([]);
   const [selection, setSelection] = useState(null);
-  const [releaseYear, setReleaseYear] = useState(null)
+  const [rangeRatingValues, setRangeRatingValues] = useState([5, 9]);
+  const [rangeReleaseValues, setRangeReleaseValues] = useState([1990, new Date().getFullYear()]);
 
   useEffect(() => {
     const options = props.genres.reduce(
@@ -25,20 +35,46 @@ const MovieSearch = (props) => {
     setGenres(genres.concat(options));
   }, [props.genres]);
 
-  const handleChange = (selectedOption) => {
-      console.log(selectedOption);
-      setSelection(selectedOption)
+  const handleGenreSelect = (selectedOption) => {
+    setSelection(selectedOption);
+  };
 
-    //   setTimeout(() => {
-    //       console.log(selectedOption)
-    //   }, 1000);
+  const handleRatingRange = (values) => setRangeRatingValues([...values]);
+  const handleReleaseRange = (values) => setRangeReleaseValues([...values]);
+
+  const rangeRatingSettings = {
+    min: 1,
+    max: 10,
+    step: 0.1,
+    value: rangeRatingValues,
+    defaultValue: rangeRatingValues,
+    onChange: handleRatingRange,
+  };
+
+  const rangeReleaseSettings = {
+    min: 1900,
+    max: new Date().getFullYear(),
+    step: 1,
+    value: rangeReleaseValues,
+    defaultValue: rangeReleaseValues,
+    onChange: handleReleaseRange,
   };
 
   return (
     <Wrapper>
       <SearchWrapper>
-        <Select onChange={handleChange} options={genres}  placeholder="Generos" value={selection}/>
-
+        <Select
+          onChange={handleGenreSelect}
+          options={genres}
+          placeholder="Géneros"
+          value={selection}
+        />
+        <Range {...rangeRatingSettings}></Range>
+        <p>valor min:{rangeRatingValues[0]}</p>
+        <p>valor max:{rangeRatingValues[1]}</p>
+        <Range {...rangeReleaseSettings}></Range>
+        <p>valor min año:{rangeReleaseValues[0]}</p>
+        <p>valor max año:{rangeReleaseValues[1]}</p>
         <button>Buscar</button>
       </SearchWrapper>
     </Wrapper>
