@@ -15,6 +15,7 @@ const SearchWrapper = styled.div`
 const MovieSearch = (props) => {
   const [genres, setGenres] = useState([]);
   const [selection, setSelection] = useState(null);
+  const [releaseYear, setReleaseYear] = useState(null)
 
   useEffect(() => {
     const options = props.genres.reduce(
@@ -27,12 +28,16 @@ const MovieSearch = (props) => {
   const handleChange = (selectedOption) => {
       console.log(selectedOption);
       setSelection(selectedOption)
+
+    //   setTimeout(() => {
+    //       console.log(selectedOption)
+    //   }, 1000);
   };
 
   return (
     <Wrapper>
       <SearchWrapper>
-        <Select width="500px" onChange={handleChange} options={genres} />
+        <Select onChange={handleChange} options={genres}  placeholder="Generos" value={selection}/>
 
         <button>Buscar</button>
       </SearchWrapper>
