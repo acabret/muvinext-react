@@ -22,9 +22,9 @@ const MovieImage = styled.div`
 
 const MovieScoreWrapper = styled.div`
   position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(50%, -50%);
+  top: 5px;
+  right: 5px;
+  /* transform: translate(50%, -50%); */
   background-color: hsla(53, 100%, 42%, 1);
   padding: 0.2rem 0.5rem;
   z-index: 10;
