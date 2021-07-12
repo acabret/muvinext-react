@@ -2,11 +2,13 @@ import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
 
 const Wrapper = styled.article`
-  /* flex: 0 0 11.5rem; */
   background-color: gray;
-  width: 11rem;
-  // height: 21.875rem;
-  margin: 1rem;
+  /* width: 11rem; */
+  width: 40%;
+  margin: 1rem .5rem;
+  @media (min-width: 768px) {
+    width: 15%;
+  }
 `;
 const MovieImage = styled.div`
   position: relative;
@@ -15,7 +17,6 @@ const MovieImage = styled.div`
   background-position: center;
   background-size: cover;
   padding-top: calc( 100% * 16/11);
-  /* height: 17.125rem; */
   width: 100%;
 `;
 
@@ -26,11 +27,11 @@ const MovieScoreWrapper = styled.div`
   transform: translate(50%, -50%);
   background-color: hsla(53, 100%, 42%, 1);
   padding: 0.2rem 0.5rem;
+  z-index: 10;
 `;
 
 const MovieScore = styled.span`
-  font-size: 1.125rem;
-  /* color: #fff; */
+  font-size: 1rem;
   font-weight: bold;
 `;
 const MovieTitle = styled.h3`

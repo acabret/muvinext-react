@@ -4,9 +4,12 @@ import MovieCover from "./MovieCover";
 const MoviesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  padding: 1rem;
+  justify-content: center;
+  padding: 1rem 0;
   background-color: red;
+  @media (min-width: 768px) {
+    justify-content:space-around;
+  }
 `;
 
 const SectionTitle = styled.h3`
