@@ -7,7 +7,7 @@ import MovieSearch from "./components/MovieSearch"
 function App() {
   const [genres, setGenres] = useState([]);
   const [sections, setSections] = useState([]);
-  const [searchSection, setSearchSection] = useState([]);
+  const [searchSection, setSearchSection] = useState(null);
 
 
   useEffect(() => {
@@ -20,7 +20,8 @@ function App() {
 
   return (
     <div>
-      <MovieSearch genres={genres}/>
+      <MovieSearch genres={genres} setSearchSection={setSearchSection}/>
+      {searchSection && <MovieSection key={searchSection.id} sectionTitle={searchSection.name} movie={searchSection.movie}/>}
       {sections.map((section) => (
         <MovieSection key={section.id} sectionTitle={section.name} movies={section.movies} />
       ))}

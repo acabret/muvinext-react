@@ -3,6 +3,7 @@ import Select from "react-select";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
 import { useState, useEffect } from "react";
+import { discoverMovies } from "../utils/movies";
 
 // const createSliderWithTooltip = Slider.createSliderWithTooltip;
 // const Range = createSliderWithTooltip(Slider.Range)
@@ -25,7 +26,10 @@ const MovieSearch = (props) => {
   const [genres, setGenres] = useState([]);
   const [selection, setSelection] = useState(null);
   const [rangeRatingValues, setRangeRatingValues] = useState([5, 9]);
-  const [rangeReleaseValues, setRangeReleaseValues] = useState([1990, new Date().getFullYear()]);
+  const [rangeReleaseValues, setRangeReleaseValues] = useState([
+    1990,
+    new Date().getFullYear(),
+  ]);
 
   useEffect(() => {
     const options = props.genres.reduce(
@@ -35,7 +39,21 @@ const MovieSearch = (props) => {
     setGenres(genres.concat(options));
   }, [props.genres]);
 
+  const searchMovies = async () => {
+    const searchParams = {
+      voteGte: rangeRatingValues[0],
+      voteLte: rangeRatingValues[1],
+      genre: selection.value,
+      dateGte: rangeReleaseValues[0],
+      dateLte: rangeReleaseValues[1]
+    };
+
+    const searchResult = await discoverMovies(searchParams);
+    console.log(searchResult);
+  };
+
   const handleGenreSelect = (selectedOption) => {
+      console.log(selectedOption);
     setSelection(selectedOption);
   };
 
@@ -75,7 +93,7 @@ const MovieSearch = (props) => {
         <Range {...rangeReleaseSettings}></Range>
         <p>valor min año:{rangeReleaseValues[0]}</p>
         <p>valor max año:{rangeReleaseValues[1]}</p>
-        <button>Buscar</button>
+        <button onClick={searchMovies}>Buscar</button>
       </SearchWrapper>
     </Wrapper>
   );
