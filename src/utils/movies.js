@@ -24,8 +24,8 @@ export const discoverMovies = ({
   const genreKey = genre ? `&genre=${genre}` : "";
   const voteGteKey = voteGte ? `&voteGte=${voteGte}` : "";
   const voteLteKey = voteLte ? `&voteLte=${voteLte}` : "";
-  const dateGteKey = dateGte ? `&dateGte=${dateGte}` : "";
-  const dateLteKey = dateLte ? `&dateLte=${dateLte}` : "";
+  const dateGteKey = dateGte ? `&dateGte=${dateGte}-01-01` : "";
+  const dateLteKey = dateLte ? `&dateLte=${dateLte}-12-31` : "";
 
   return fetch(
     `${baseUrl}movies/discover${languageKey}${genreKey}${voteGteKey}${voteLteKey}${dateGteKey}${dateLteKey}`
