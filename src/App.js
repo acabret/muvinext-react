@@ -18,10 +18,12 @@ function App() {
     });
   }, [appLanguage]);
 
+console.log("estado search section",searchSection);
+
   return (
     <div>
       <MovieSearch genres={genres} setSearchSection={setSearchSection}/>
-      {searchSection && <MovieSection key={searchSection.id} sectionTitle={searchSection.name} movie={searchSection.movie}/>}
+      {searchSection && <MovieSection key={searchSection.id} sectionTitle={searchSection.name} movies={searchSection.movies}/>}
       {sections.map((section) => (
         <MovieSection key={section.id} sectionTitle={section.name} movies={section.movies} />
       ))}

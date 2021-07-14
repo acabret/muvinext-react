@@ -45,15 +45,24 @@ const MovieSearch = (props) => {
       voteLte: rangeRatingValues[1],
       genre: selection.value,
       dateGte: rangeReleaseValues[0],
-      dateLte: rangeReleaseValues[1]
+      dateLte: rangeReleaseValues[1],
     };
 
     const searchResult = await discoverMovies(searchParams);
-    console.log(searchResult);
+
+    const searchSection = {
+      id: selection.value,
+      name: selection.label,
+      movies: [...searchResult],
+    };
+
+    props.setSearchSection(searchSection);
+
+    // console.log(searchResult);
   };
 
   const handleGenreSelect = (selectedOption) => {
-      console.log(selectedOption);
+    console.log(selectedOption);
     setSelection(selectedOption);
   };
 

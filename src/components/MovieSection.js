@@ -18,6 +18,8 @@ const SectionTitle = styled.h3`
 `;
 
 const MovieSection = ({ sectionTitle, movies }) => {
+
+  console.log("peliculas de ", sectionTitle, "peliculas", movies);
   return (
     <section>
       <SectionTitle>{sectionTitle}</SectionTitle>
