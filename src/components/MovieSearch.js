@@ -36,23 +36,25 @@ const MovieSearch = (props) => {
       (array, genre) => array.concat({ value: genre.id, label: genre.name }),
       []
     );
-    setGenres(genres.concat(options));
+    setGenres([...options]);
   }, [props.genres]);
 
   const searchMovies = async () => {
     const searchParams = {
       voteGte: rangeRatingValues[0],
       voteLte: rangeRatingValues[1],
-      genre: selection.value,
+      genre: selection?.value ? selection.value : "",
       dateGte: rangeReleaseValues[0],
       dateLte: rangeReleaseValues[1],
     };
+    //corregir en caso de no seleccionar ningun genero
 
     const searchResult = await discoverMovies(searchParams);
+    console.log(searchResult);
 
     const searchSection = {
-      id: selection.value,
-      name: selection.label,
+      id: selection?.value ? selection.value : 0,
+      name: selection?.label ? selection.label : "De todos los géneros",
       movies: [...searchResult],
     };
 

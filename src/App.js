@@ -13,8 +13,8 @@ function App() {
   useEffect(() => {
     console.log("running use effect");
     initAppData({ language: appLanguage }).then((data) => {
-      setGenres(genres.concat(data.genres));
-      setSections(sections.concat(data.sections));
+      setGenres([...data.genres]);
+      setSections([...data.sections]);
     });
   }, [appLanguage]);
 
