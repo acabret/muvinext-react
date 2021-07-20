@@ -1,5 +1,5 @@
 import { appLanguage } from "./config";
-const baseUrl = "http://localhost:4000/api/";
+const baseUrl = "/api/";
 
 export const initAppData = ({ language }) => {
   return fetch(`${baseUrl}movies/init`)
