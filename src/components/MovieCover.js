@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
 
 const Wrapper = styled.article`
-  background-color: gray;
+  background-color: hsla(0, 0%, 10%, 1);
   /* width: 11rem; */
   width: 40%;
-  margin: 1rem .5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+  overflow: hidden;
   @media (min-width: 768px) {
     width: 15%;
   }
@@ -16,7 +18,7 @@ const MovieImage = styled.div`
     `${baseImageUrl}${imageSizes.small}${poster_path}`});
   background-position: center;
   background-size: cover;
-  padding-top: calc( 100% * 16/11);
+  padding-top: calc(100% * 16 / 11);
   width: 100%;
 `;
 
@@ -25,9 +27,10 @@ const MovieScoreWrapper = styled.div`
   top: 5px;
   right: 5px;
   /* transform: translate(50%, -50%); */
-  background-color: hsla(53, 100%, 42%, 1);
+  background-color: hsla(53, 100%, 42%, .75);
   padding: 0.2rem 0.5rem;
-  z-index: 10;
+  border-radius: 5px;
+  z-index: 1;
 `;
 
 const MovieScore = styled.span`
@@ -35,10 +38,15 @@ const MovieScore = styled.span`
   font-weight: bold;
 `;
 const MovieTitle = styled.h3`
-  font-size: 1rem ;
-
-
-
+  padding: 0.35rem;
+  color:white;
+  font-size: 1rem;
+  line-height: 1.1rem;
+  height: 2.2rem;
+  -webkit-line-clamp:2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const MovieCover = ({ movie }) => {

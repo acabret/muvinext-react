@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { initAppData } from "./utils/movies";
 import { appLanguage } from "./utils/config";
+import "./App.css"
 import MovieSection from "./components/MovieSection";
 import MovieSearch from "./components/MovieSearch"
 
@@ -21,7 +22,7 @@ function App() {
 console.log("estado search section",searchSection);
 
   return (
-    <div>
+    <div class="App">
       <MovieSearch genres={genres} setSearchSection={setSearchSection}/>
       {searchSection && <MovieSection key={searchSection.id} sectionTitle={searchSection.name} movies={searchSection.movies}/>}
       {sections.map((section) => (

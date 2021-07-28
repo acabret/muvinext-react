@@ -9,8 +9,11 @@ import { discoverMovies } from "../utils/movies";
 // const Range = createSliderWithTooltip(Slider.Range)
 
 const Wrapper = styled.main`
+  position: relative;
+  padding: 1rem 0;
   display: flex;
   justify-content: center;
+  z-index: 2;
 `;
 
 const SearchWrapper = styled.div`
@@ -19,6 +22,25 @@ const SearchWrapper = styled.div`
   width: 60%;
   @media (min-width: 768px) {
     width: 300px;
+  }
+`;
+
+const SearchButton = styled.button`
+  position: relative;
+  display: block;
+  height: 3rem;
+  width: 100%;
+  background-color: hsla(47, 92%, 51%, 1);
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-family: inherit;
+  border: none;
+  border-radius: 5px;
+  transition: transform 0.2s linear;
+
+  :active {
+    transform: scale(0.95);
   }
 `;
 
@@ -98,13 +120,29 @@ const MovieSearch = (props) => {
           placeholder="Géneros"
           value={selection}
         />
-        <Range {...rangeRatingSettings}></Range>
-        <p>valor min:{rangeRatingValues[0]}</p>
+        <Range
+          // activeDotStyle={{ backgroundColor: " hsla(47, 92%, 51%, 1)" }}
+          // dotStyle={{backgroundColor:" hsla(47, 92%, 51%, 1)"}}
+          trackStyle={[{ backgroundColor: " hsla(47, 92%, 51%, 1)" }]}
+          handleStyle={[
+            { backgroundColor: " hsla(47, 92%, 51%, 1)" },
+            { backgroundColor: " hsla(47, 92%, 51%, 1)" },
+          ]}
+          {...rangeRatingSettings}
+        ></Range>
+        <span>valor min:{rangeRatingValues[0]}</span>
         <p>valor max:{rangeRatingValues[1]}</p>
-        <Range {...rangeReleaseSettings}></Range>
+        <Range
+          trackStyle={[{ backgroundColor: " hsla(47, 92%, 51%, 1)" }]}
+          handleStyle={[
+            { backgroundColor: " hsla(47, 92%, 51%, 1)" },
+            { backgroundColor: " hsla(47, 92%, 51%, 1)" },
+          ]}
+          {...rangeReleaseSettings}
+        ></Range>
         <p>valor min año:{rangeReleaseValues[0]}</p>
         <p>valor max año:{rangeReleaseValues[1]}</p>
-        <button onClick={searchMovies}>Buscar</button>
+        <SearchButton onClick={searchMovies}>Buscar</SearchButton>
       </SearchWrapper>
     </Wrapper>
   );
