@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
 
 const Wrapper = styled.article`
-  background-color: hsla(0, 0%, 10%, 1);
+  background-color: hsla(0, 0%, 15%, 1);
   /* width: 11rem; */
   width: 40%;
   margin: 0.5rem;

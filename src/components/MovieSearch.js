@@ -44,6 +44,19 @@ const SearchButton = styled.button`
   }
 `;
 
+const RangeInfo = styled.div`
+  width: 100%;
+  text-align: center;
+  color: white;
+  :last-of-type{
+    margin-bottom:1rem;
+  }
+`;
+
+const RangeData = styled.span`
+  color: hsla(47, 92%, 51%, 1);
+`;
+
 const MovieSearch = (props) => {
   const [genres, setGenres] = useState([]);
   const [selection, setSelection] = useState(null);
@@ -61,35 +74,24 @@ const MovieSearch = (props) => {
     setGenres([...options]);
   }, [props.genres]);
 
-  const searchMovies = async () => {
-    const searchParams = {
-      voteGte: rangeRatingValues[0],
-      voteLte: rangeRatingValues[1],
-      genre: selection?.value ? selection.value : "",
-      dateGte: rangeReleaseValues[0],
-      dateLte: rangeReleaseValues[1],
-    };
-    //corregir en caso de no seleccionar ningun genero
-
-    const searchResult = await discoverMovies(searchParams);
-    console.log(searchResult);
-
-    const searchSection = {
-      id: selection?.value ? selection.value : 0,
-      name: selection?.label ? selection.label : "De todos los géneros",
-      movies: [...searchResult],
-    };
-
-    props.setSearchSection(searchSection);
-
-    // console.log(searchResult);
+  const selectStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      color: "white",
+      backgroundColor: "hsla(0, 0%, 15%, 1)",
+    }),
+    control: (provided, state) => ({
+      // none of react-select's styles are passed to <Control />
+      ...provided,
+      backgroundColor: "hsla(0, 0%, 15%, 1)",
+    }),
+    singleValue: (provided, state) => ({
+      ...provided,
+      color: "hsla(47, 92%, 51%, 1)",
+    }),
   };
 
-  const handleGenreSelect = (selectedOption) => {
-    console.log(selectedOption);
-    setSelection(selectedOption);
-  };
-
+  const handleGenreSelect = (selectedOption) => setSelection(selectedOption);
   const handleRatingRange = (values) => setRangeRatingValues([...values]);
   const handleReleaseRange = (values) => setRangeReleaseValues([...values]);
 
@@ -111,6 +113,24 @@ const MovieSearch = (props) => {
     onChange: handleReleaseRange,
   };
 
+  const searchMovies = async () => {
+    const searchParams = {
+      voteGte: rangeRatingValues[0],
+      voteLte: rangeRatingValues[1],
+      genre: selection?.value ? selection.value : "",
+      dateGte: rangeReleaseValues[0],
+      dateLte: rangeReleaseValues[1],
+    };
+    const searchResult = await discoverMovies(searchParams);
+    const searchSection = {
+      id: selection?.value ? selection.value : 0,
+      name: selection?.label ? selection.label : "De todos los géneros",
+      movies: [...searchResult],
+    };
+
+    props.setSearchSection(searchSection);
+  };
+
   return (
     <Wrapper>
       <SearchWrapper>
@@ -119,10 +139,10 @@ const MovieSearch = (props) => {
           options={genres}
           placeholder="Géneros"
           value={selection}
+          styles={selectStyles}
         />
         <Range
-          // activeDotStyle={{ backgroundColor: " hsla(47, 92%, 51%, 1)" }}
-          // dotStyle={{backgroundColor:" hsla(47, 92%, 51%, 1)"}}
+          style={{ margin: "1rem 0" }}
           trackStyle={[{ backgroundColor: " hsla(47, 92%, 51%, 1)" }]}
           handleStyle={[
             { backgroundColor: " hsla(47, 92%, 51%, 1)" },
@@ -130,9 +150,16 @@ const MovieSearch = (props) => {
           ]}
           {...rangeRatingSettings}
         ></Range>
-        <span>valor min:{rangeRatingValues[0]}</span>
-        <p>valor max:{rangeRatingValues[1]}</p>
+
+        <RangeInfo>
+          Puntajes entre <RangeData>{rangeRatingValues[0]}</RangeData> y{" "}
+          <RangeData>{rangeRatingValues[1]}</RangeData>
+        </RangeInfo>
+
+        {/* <span>valor min:{rangeRatingValues[0]}</span>
+        <p>valor max:{rangeRatingValues[1]}</p> */}
         <Range
+          style={{ margin: "1rem 0" }}
           trackStyle={[{ backgroundColor: " hsla(47, 92%, 51%, 1)" }]}
           handleStyle={[
             { backgroundColor: " hsla(47, 92%, 51%, 1)" },
@@ -140,8 +167,13 @@ const MovieSearch = (props) => {
           ]}
           {...rangeReleaseSettings}
         ></Range>
-        <p>valor min año:{rangeReleaseValues[0]}</p>
-        <p>valor max año:{rangeReleaseValues[1]}</p>
+
+        <RangeInfo>
+          Peliculas del año <RangeData>{rangeReleaseValues[0]}</RangeData> y{" "}
+          <RangeData>{rangeReleaseValues[1]}</RangeData>
+        </RangeInfo>
+        {/* <p>Puntajes entre {rangeReleaseValues[0]}</p>
+        <p>valor max año:{rangeReleaseValues[1]}</p> */}
         <SearchButton onClick={searchMovies}>Buscar</SearchButton>
       </SearchWrapper>
     </Wrapper>

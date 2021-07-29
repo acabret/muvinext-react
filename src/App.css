@@ -1,5 +1,6 @@
 .App {
   background-color: hsla(0, 0%, 6%, 1);
+  min-height: 100vh;
 }
 
 .App-logo {
