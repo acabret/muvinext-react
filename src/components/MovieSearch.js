@@ -160,8 +160,8 @@ const MovieSearch = (props) => {
         ></Range>
 
         <RangeInfo>
-          Puntajes entre <RangeData>{rangeRatingValues[0]}</RangeData> y{" "}
-          <RangeData>{rangeRatingValues[1]}</RangeData>
+          Puntajes entre <RangeData>{rangeRatingValues[0].toFixed(1)}</RangeData> y{" "}
+          <RangeData>{rangeRatingValues[1].toFixed(1)}</RangeData>
         </RangeInfo>
 
         {/* <span>valor min:{rangeRatingValues[0]}</span>
