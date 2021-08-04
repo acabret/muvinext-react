@@ -7,12 +7,18 @@ import { discoverMovies } from "../utils/movies";
 
 // const createSliderWithTooltip = Slider.createSliderWithTooltip;
 // const Range = createSliderWithTooltip(Slider.Range)
+const AppTitle = styled.h1`
+  color: hsla(47, 92%, 51%, 1);
+  margin-bottom:1rem;
+  `;
 
 const Wrapper = styled.main`
   position: relative;
   padding: 1rem 0;
   display: flex;
-  justify-content: center;
+  flex-direction:column;
+  // justify-content: center;
+  align-items:center;
   z-index: 2;
 `;
 
@@ -133,7 +139,9 @@ const MovieSearch = (props) => {
 
   return (
     <Wrapper>
+      <AppTitle>Muvinext</AppTitle>
       <SearchWrapper>
+
         <Select
           onChange={handleGenreSelect}
           options={genres}
