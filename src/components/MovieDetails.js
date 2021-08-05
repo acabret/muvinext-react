@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 6%, 1);
@@ -18,13 +19,32 @@ const TitleBar = styled.div`
   }
 `;
 
+const BackIcon = styled(FaArrowLeft)`
+  position: relative;
+  color: hsla(0, 0%, 40%, 1);
+  font-size: 2rem;
+  transition: transform 0.1s linear;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+`;
+
 const BackButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 3rem 0 0;
   border-right: 1px solid hsla(0, 0%, 25%, 1);
   @media (min-width: 768px) {
     flex: 10rem 0 0;
   }
+
+  :hover ${BackIcon} {
+    transform: scale(1.05);
+  }
 `;
+
 const Title = styled.div`
   display: flex;
   align-items: center;
@@ -52,18 +72,22 @@ const MovieInfo = styled.div`
   flex-wrap: wrap;
   padding: 1rem;
   //   width: 400px;
+  font-size: 1.125rem;
 
   @media (min-width: 768px) {
+    flex-wrap: nowrap;
     padding: 2rem 5rem;
   }
 `;
 
 const MovieImageContainer = styled.div`
   width: 100%;
-  overflow:hidden;
+  overflow: hidden;
   border-radius: 5px;
   @media (min-width: 768px) {
-    width: 500px;
+    // //   flex-basis:500px;
+    // width: 500px;
+    width: 30%;
   }
 `;
 
@@ -77,24 +101,34 @@ const MovieImage = styled.div`
   width: 100%;
 `;
 
-const Test = styled.div`
-  width: 300px;
-  height: 600px;
-  background-color: red;
-`;
+// const Test = styled.div`
+//   width: 300px;
+//   height: 600px;
+//   background-color: red;
+// `;
 
 const MovieSpecs = styled.div`
-  //   flex: 100% 1 0;
   color: #fff;
-
+  width: 100%;
+  padding: 1rem 0;
+  font-weight:600;
   @media (min-width: 768px) {
-    //flex:
-    flex-grow: 1;
-    // flex-shrink: 0;
+    width: 70%;
+    padding: 1rem;
   }
 `;
 
-const MovieDetails = (props) => {
+const MovieMetaData = styled.div`
+  display: flex;
+  margin-bottom: .5rem;
+`;
+const MetaDataItem = styled.div`
+  margin: 0 .5rem;
+  color: ${(p)=>p.color ? p.color : "hsla(0, 0%, 40%, 1)"};
+  font-weight:600;
+`;
+
+const MovieDetails = () => {
   const history = useHistory();
   const movie = history.location.state.movie;
   const goHome = () => history.goBack();
@@ -102,15 +136,23 @@ const MovieDetails = (props) => {
   return (
     <Wrapper>
       <TitleBar>
-        <BackButton onClick={goHome} />
+        <BackButton onClick={goHome}>
+          <BackIcon />
+        </BackButton>
         <Title>{movie.title}</Title>
       </TitleBar>
       <MovieInfo>
         <MovieImageContainer>
           <MovieImage poster_path={movie.poster_path} />
         </MovieImageContainer>
-        {/* <Test></Test> */}
-        <MovieSpecs>asdaddad</MovieSpecs>
+        <MovieSpecs>
+          <MovieMetaData>
+            <MetaDataItem>{movie.release_date.split("-")[0]}</MetaDataItem>
+            <MetaDataItem color={"hsla(53, 100%, 42%, 1)"}>{movie.vote_average}</MetaDataItem>
+          </MovieMetaData>
+
+          <div>{movie.overview}</div>
+        </MovieSpecs>
       </MovieInfo>
     </Wrapper>
   );
