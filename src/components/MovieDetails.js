@@ -101,11 +101,6 @@ const MovieImage = styled.div`
   width: 100%;
 `;
 
-// const Test = styled.div`
-//   width: 300px;
-//   height: 600px;
-//   background-color: red;
-// `;
 
 const MovieSpecs = styled.div`
   color: #fff;
