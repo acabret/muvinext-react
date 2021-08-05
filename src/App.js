@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initAppData } from "./utils/movies";
 import { appLanguage } from "./utils/config";
 import "./App.css";
-import MovieSection from "./components/MovieSection";
-import MovieSearch from "./components/MovieSearch";
 import Home from "./components/Home";
 import MovieDetails from "./components/MovieDetails";
 

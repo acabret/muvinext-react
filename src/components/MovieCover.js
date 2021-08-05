@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
-import { Link, useRouteMatch, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.article`
   background-color: hsla(0, 0%, 15%, 1);
@@ -69,7 +69,6 @@ const MovieTitle = styled.h3`
 `;
 
 const MovieCover = ({ movie }) => {
-  // const history = useHistory();
   return (
     <Wrapper>
       {/* <StyledLink to={`/movie/${movie.id}`}> */}
