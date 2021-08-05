@@ -19,7 +19,7 @@ const Home = ({}) => {
   }, [appLanguage]);
 
   return (
-    <div class="App">
+    <div className="App">
       <MovieSearch genres={genres} setSearchSection={setSearchSection} />
       {searchSection && (
         <MovieSection

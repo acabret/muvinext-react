@@ -22,7 +22,7 @@ const SectionTitle = styled.h3`
 `;
 
 const MovieSection = ({ sectionTitle, movies }) => {
-  console.log("peliculas de ", sectionTitle, "peliculas", movies);
+  // console.log("peliculas de ", sectionTitle, "peliculas", movies);
   return (
     <Wrapper>
       <SectionTitle>{sectionTitle}</SectionTitle>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { initAppData } from "./utils/movies";
 import { appLanguage } from "./utils/config";
 import "./App.css";
@@ -8,7 +8,7 @@ import MovieSearch from "./components/MovieSearch";
 import Home from "./components/Home";
 import MovieDetails from "./components/MovieDetails";
 
-function App() {
+function App(props) {
   // const [genres, setGenres] = useState([]);
   // const [sections, setSections] = useState([]);
   // const [searchSection, setSearchSection] = useState(null);
@@ -22,6 +22,9 @@ function App() {
   // }, [appLanguage]);
 
   // console.log("estado search section", searchSection);
+  // console.log(props);
+
+  // const history = useHistory();
 
   return (
     <Router>
