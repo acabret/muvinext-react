@@ -8,18 +8,18 @@ import MovieSearch from "./components/MovieSearch";
 import Home from "./components/Home";
 import MovieDetails from "./components/MovieDetails";
 
-function App(props) {
-  // const [genres, setGenres] = useState([]);
-  // const [sections, setSections] = useState([]);
-  // const [searchSection, setSearchSection] = useState(null);
+function App() {
+  const [genres, setGenres] = useState([]);
+  const [sections, setSections] = useState([]);
+  const [searchSection, setSearchSection] = useState(null);
 
-  // useEffect(() => {
-  //   console.log("running use effect");
-  //   initAppData({ language: appLanguage }).then((data) => {
-  //     setGenres([...data.genres]);
-  //     setSections([...data.sections]);
-  //   });
-  // }, [appLanguage]);
+  useEffect(() => {
+    console.log("running use effect");
+    initAppData({ language: appLanguage }).then((data) => {
+      setGenres([...data.genres]);
+      setSections([...data.sections]);
+    });
+  }, [appLanguage]);
 
   // console.log("estado search section", searchSection);
   // console.log(props);
@@ -33,7 +33,7 @@ function App(props) {
           <MovieDetails />
         </Route>
         <Route path="/">
-          <Home />
+          <Home genres={genres} sections={sections} searchSection={searchSection} setSearchSection={setSearchSection}/>
         </Route>
       </Switch>
     </Router>
