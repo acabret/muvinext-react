@@ -148,9 +148,8 @@ const MovieDetails = () => {
         <MovieSpecs>
           <MovieMetaData>
             <MetaDataItem>{movie.release_date.split("-")[0]}</MetaDataItem>
-            <MetaDataItem color={"hsla(53, 100%, 42%, 1)"}>{movie.vote_average}</MetaDataItem>
+            <MetaDataItem color={"hsla(53, 100%, 42%, 1)"}>{Number(movie.vote_average).toFixed(1)}</MetaDataItem>
           </MovieMetaData>
-
           <div>{movie.overview}</div>
         </MovieSpecs>
       </MovieInfo>
