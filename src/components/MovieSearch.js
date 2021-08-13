@@ -43,6 +43,7 @@ const SearchButton = styled.button`
   font-family: inherit;
   border: none;
   border-radius: 5px;
+  cursor:pointer;
   transition: transform 0.2s linear;
 
   :active {

@@ -36,6 +36,7 @@ const BackButton = styled.div`
   align-items: center;
   flex: 3rem 0 0;
   border-right: 1px solid hsla(0, 0%, 25%, 1);
+  cursor:pointer;
   @media (min-width: 768px) {
     flex: 10rem 0 0;
   }
