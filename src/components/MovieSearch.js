@@ -2,23 +2,24 @@ import styled from "styled-components";
 import Select from "react-select";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { LanguageContext } from "../App";
 import { discoverMovies } from "../utils/movies";
 
 // const createSliderWithTooltip = Slider.createSliderWithTooltip;
 // const Range = createSliderWithTooltip(Slider.Range)
 const AppTitle = styled.h1`
   color: hsla(47, 92%, 51%, 1);
-  margin-bottom:1rem;
-  `;
+  margin-bottom: 1rem;
+`;
 
 const Wrapper = styled.main`
   position: relative;
   padding: 1rem 0;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   // justify-content: center;
-  align-items:center;
+  align-items: center;
   z-index: 2;
 `;
 
@@ -43,7 +44,7 @@ const SearchButton = styled.button`
   font-family: inherit;
   border: none;
   border-radius: 5px;
-  cursor:pointer;
+  cursor: pointer;
   transition: transform 0.2s linear;
 
   :active {
@@ -55,8 +56,8 @@ const RangeInfo = styled.div`
   width: 100%;
   text-align: center;
   color: white;
-  :last-of-type{
-    margin-bottom:1rem;
+  :last-of-type {
+    margin-bottom: 1rem;
   }
 `;
 
@@ -72,6 +73,9 @@ const MovieSearch = (props) => {
     1990,
     new Date().getFullYear(),
   ]);
+
+  const appLanguage = useContext(LanguageContext);
+  console.log("contexto language", appLanguage);
 
   useEffect(() => {
     const options = props.genres.reduce(
@@ -127,6 +131,7 @@ const MovieSearch = (props) => {
       genre: selection?.value ? selection.value : "",
       dateGte: rangeReleaseValues[0],
       dateLte: rangeReleaseValues[1],
+      language: appLanguage,
     };
     const searchResult = await discoverMovies(searchParams);
     const searchSection = {
@@ -142,7 +147,6 @@ const MovieSearch = (props) => {
     <Wrapper>
       <AppTitle>Muvinext</AppTitle>
       <SearchWrapper>
-
         <Select
           onChange={handleGenreSelect}
           options={genres}
@@ -161,7 +165,8 @@ const MovieSearch = (props) => {
         ></Range>
 
         <RangeInfo>
-          Puntajes entre <RangeData>{rangeRatingValues[0].toFixed(1)}</RangeData> y{" "}
+          Puntajes entre{" "}
+          <RangeData>{rangeRatingValues[0].toFixed(1)}</RangeData> y{" "}
           <RangeData>{rangeRatingValues[1].toFixed(1)}</RangeData>
         </RangeInfo>
 
