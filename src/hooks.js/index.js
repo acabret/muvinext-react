@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useLanguage = () => {
+export const useAppLanguage = () => {
   const [appLanguage, setAppLanguage] = useState(null);
 
   useEffect(() => {

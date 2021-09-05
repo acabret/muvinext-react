@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Select from "react-select";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useState, useEffect, useContext } from "react";
-import { LanguageContext } from "../App";
+import { useState, useEffect } from "react";
+import { useLanguage } from "../LanguageContext";
 import { discoverMovies } from "../utils/movies";
 
 // const createSliderWithTooltip = Slider.createSliderWithTooltip;
@@ -74,7 +74,8 @@ const MovieSearch = (props) => {
     new Date().getFullYear(),
   ]);
 
-  const appLanguage = useContext(LanguageContext);
+  // const appLanguage = useContext(LanguageContext);
+  const appLanguage = useLanguage();
 
   useEffect(() => {
     const options = props.genres.reduce(
@@ -123,6 +124,7 @@ const MovieSearch = (props) => {
   };
 
   const searchMovies = async () => {
+    console.log(appLanguage);
     const searchParams = {
       voteGte: rangeRatingValues[0],
       voteLte: rangeRatingValues[1],

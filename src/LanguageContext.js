@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
-import { useLanguage } from "./hooks.js";
+import { useAppLanguage } from "./hooks.js";
 
 const LanguageContext = createContext();
 const LanguageUpdateContext = createContext();
 
-export function useLanguageContext() {
+export function useLanguage() {
   return useContext(LanguageContext);
 }
 
@@ -13,7 +13,7 @@ export function useLanguageUpdate() {
 }
 
 export function LanguageProvider({ children }) {
-  const appLanguage = useLanguage();
+  const appLanguage = useAppLanguage();
 
   return (
     <LanguageContext.Provider value={appLanguage.value}>
