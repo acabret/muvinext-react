@@ -1,8 +1,9 @@
-import { appLanguage } from "./config";
+// import { appLanguage } from "./config";
 const baseUrl = "/api/";
 
 export const initAppData = ({ language }) => {
-  return fetch(`${baseUrl}movies/init`)
+  const langKey = language ? `?language=${language}` : "";
+  return fetch(`${baseUrl}movies/init${langKey}`)
     .then((response) => {
       if (response.status === 200) {
         return response.json();
@@ -13,7 +14,7 @@ export const initAppData = ({ language }) => {
 };
 //genre, language, voteGte, voteLte, dateGte
 export const discoverMovies = ({
-  language = appLanguage,
+  language,
   genre,
   voteGte,
   voteLte,
