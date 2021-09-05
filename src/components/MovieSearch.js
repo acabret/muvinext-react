@@ -75,7 +75,6 @@ const MovieSearch = (props) => {
   ]);
 
   const appLanguage = useContext(LanguageContext);
-  console.log("contexto language", appLanguage);
 
   useEffect(() => {
     const options = props.genres.reduce(
@@ -92,7 +91,6 @@ const MovieSearch = (props) => {
       backgroundColor: "hsla(0, 0%, 15%, 1)",
     }),
     control: (provided, state) => ({
-      // none of react-select's styles are passed to <Control />
       ...provided,
       backgroundColor: "hsla(0, 0%, 15%, 1)",
     }),
@@ -169,9 +167,6 @@ const MovieSearch = (props) => {
           <RangeData>{rangeRatingValues[0].toFixed(1)}</RangeData> y{" "}
           <RangeData>{rangeRatingValues[1].toFixed(1)}</RangeData>
         </RangeInfo>
-
-        {/* <span>valor min:{rangeRatingValues[0]}</span>
-        <p>valor max:{rangeRatingValues[1]}</p> */}
         <Range
           style={{ margin: "1rem 0" }}
           trackStyle={[{ backgroundColor: " hsla(47, 92%, 51%, 1)" }]}
@@ -186,8 +181,6 @@ const MovieSearch = (props) => {
           Peliculas del año <RangeData>{rangeReleaseValues[0]}</RangeData> y{" "}
           <RangeData>{rangeReleaseValues[1]}</RangeData>
         </RangeInfo>
-        {/* <p>Puntajes entre {rangeReleaseValues[0]}</p>
-        <p>valor max año:{rangeReleaseValues[1]}</p> */}
         <SearchButton onClick={searchMovies}>Buscar</SearchButton>
       </SearchWrapper>
     </Wrapper>

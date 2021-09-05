@@ -15,7 +15,6 @@ function App() {
   const [searchSection, setSearchSection] = useState(null);
 
   useEffect(() => {
-    console.log("running use effect", appLanguage.value);
     if (appLanguage.value) {
       initAppData({ language: appLanguage.value }).then((data) => {
         setGenres([...data.genres]);
