@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   left: 0;
   padding: 1rem;
   z-index: 10;
-  width: 200px;
+  width: 120px;
 `;
 
 const LanguagePicker = () => {
