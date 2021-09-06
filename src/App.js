@@ -9,8 +9,6 @@ import { useLanguage } from "./LanguageContext";
 export const LanguageContext = createContext();
 
 function App() {
-  // const appLanguage = useLanguage();
-
   const [genres, setGenres] = useState([]);
   const [sections, setSections] = useState([]);
   const [searchSection, setSearchSection] = useState(null);
@@ -44,26 +42,6 @@ function App() {
       </Switch>
     </Router>
   );
-
-  // return (
-  //   <LanguageContext.Provider value={appLanguage.value}>
-  //     <Router>
-  //       <Switch>
-  //         <Route path="/movie/:id">
-  //           <MovieDetails />
-  //         </Route>
-  //         <Route path="/">
-  //           <Home
-  //             genres={genres}
-  //             sections={sections}
-  //             searchSection={searchSection}
-  //             setSearchSection={setSearchSection}
-  //           />
-  //         </Route>
-  //       </Switch>
-  //     </Router>
-  //   </LanguageContext.Provider>
-  // );
 }
 
 export default App;
