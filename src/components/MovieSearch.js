@@ -83,6 +83,7 @@ const MovieSearch = (props) => {
       []
     );
     setGenres([...options]);
+    setSelection(null)
   }, [props.genres]);
 
   const selectStyles = {

@@ -1,11 +1,12 @@
 import MovieSection from "./MovieSection";
 import MovieSearch from "./MovieSearch";
+import LanguagePicker from "./LanguagePicker";
 import "../App.css";
 
-const Home = ({genres, sections, searchSection, setSearchSection}) => {
-
+const Home = ({ genres, sections, searchSection, setSearchSection }) => {
   return (
     <div className="App">
+      <LanguagePicker />
       <MovieSearch genres={genres} setSearchSection={setSearchSection} />
       {searchSection && (
         <MovieSection

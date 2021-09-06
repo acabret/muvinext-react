@@ -18,7 +18,7 @@ export const useAppLanguage = () => {
 
   const changeLanguage = (newLanguage) => {
     window.localStorage.setItem("app-language", newLanguage);
-    setAppLanguage(appLanguage);
+    setAppLanguage(newLanguage);
   };
 
   return { value: appLanguage, changeLanguage };

@@ -58,23 +58,20 @@ const MovieScore = styled.span`
 `;
 const MovieTitle = styled.h3`
   padding: 0.35rem;
-  // color: white;
   font-size: 1rem;
   line-height: 1.1rem;
-  height: 2.2rem;
+  height: 2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 `;
 
 const MovieCover = ({ movie }) => {
   return (
     <Wrapper>
       {/* <StyledLink to={`/movie/${movie.id}`}> */}
-      <StyledLink
-        to={{ pathname: `/movie/${movie.id}`, state: { movie } }}
-      >
+      <StyledLink to={{ pathname: `/movie/${movie.id}`, state: { movie } }}>
         <MovieImage poster_path={movie.poster_path}>
           <MovieScoreWrapper>
             <MovieScore>{Number(movie.vote_average).toFixed(1)}</MovieScore>

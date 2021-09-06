@@ -18,9 +18,9 @@ function App() {
   const appLanguage = useLanguage();
 
   useEffect(() => {
-    console.log("que es lang", appLanguage);
     if (appLanguage) {
       initAppData({ language: appLanguage }).then((data) => {
+        setSearchSection(null)
         setGenres([...data.genres]);
         setSections([...data.sections]);
       });
