@@ -125,7 +125,6 @@ const MovieSearch = (props) => {
   };
 
   const searchMovies = async () => {
-    console.log(appLanguage);
     const searchParams = {
       voteGte: rangeRatingValues[0],
       voteLte: rangeRatingValues[1],

@@ -42,7 +42,7 @@ const LanguagePicker = () => {
         onChange={handleChange}
         options={selectOptions}
         value={selection}
-      ></Select>
+      />
     </Wrapper>
   );
 };

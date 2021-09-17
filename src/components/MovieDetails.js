@@ -36,7 +36,7 @@ const BackButton = styled.div`
   align-items: center;
   flex: 3rem 0 0;
   border-right: 1px solid hsla(0, 0%, 25%, 1);
-  cursor:pointer;
+  cursor: pointer;
   @media (min-width: 768px) {
     flex: 10rem 0 0;
   }
@@ -102,12 +102,11 @@ const MovieImage = styled.div`
   width: 100%;
 `;
 
-
 const MovieSpecs = styled.div`
   color: #fff;
   width: 100%;
   padding: 1rem 0;
-  font-weight:600;
+  font-weight: 600;
   @media (min-width: 768px) {
     width: 70%;
     padding: 1rem;
@@ -116,17 +115,19 @@ const MovieSpecs = styled.div`
 
 const MovieMetaData = styled.div`
   display: flex;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 `;
 const MetaDataItem = styled.div`
-  margin: 0 .5rem;
-  color: ${(p)=>p.color ? p.color : "hsla(0, 0%, 40%, 1)"};
-  font-weight:600;
+  margin: 0 0.5rem;
+  color: ${(p) => (p.color ? p.color : "hsla(0, 0%, 40%, 1)")};
+  font-weight: 600;
 `;
 
 const MovieDetails = () => {
   const history = useHistory();
+  if (!history.location?.state?.movie) return <div>hgmmmm</div>;
   const movie = history.location.state.movie;
+
   const goHome = () => history.goBack();
 
   return (
@@ -144,7 +145,9 @@ const MovieDetails = () => {
         <MovieSpecs>
           <MovieMetaData>
             <MetaDataItem>{movie.release_date.split("-")[0]}</MetaDataItem>
-            <MetaDataItem color={"hsla(53, 100%, 42%, 1)"}>{Number(movie.vote_average).toFixed(1)}</MetaDataItem>
+            <MetaDataItem color={"hsla(53, 100%, 42%, 1)"}>
+              {Number(movie.vote_average).toFixed(1)}
+            </MetaDataItem>
           </MovieMetaData>
           <div>{movie.overview}</div>
         </MovieSpecs>

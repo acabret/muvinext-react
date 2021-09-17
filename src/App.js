@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import MovieDetails from "./components/MovieDetails";
 import { useLanguage } from "./LanguageContext";
 
-export const LanguageContext = createContext();
+// export const LanguageContext = createContext();
 
 function App() {
   const [genres, setGenres] = useState([]);
