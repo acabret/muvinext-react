@@ -1,7 +1,10 @@
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
 import { FaArrowLeft } from "react-icons/fa";
+import { getMovie } from "../utils/movies";
+import { useLanguage } from "../LanguageContext";
+import { useEffect, useState } from "react/cjs/react.development";
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 6%, 1);
@@ -124,12 +127,56 @@ const MetaDataItem = styled.div`
 `;
 
 const MovieDetails = () => {
+  const appLanguage = useLanguage();
   const history = useHistory();
-  if (!history.location?.state?.movie) return <div>hgmmmm</div>;
-  const movie = history.location.state.movie;
+  const params = useParams();
+  const [movie, setMovie] = useState(null)
+  // if (!history.location?.state?.movie) {
+  //   const { id: movieId } = params;
+  //   const movie = getMovie({ movieId, appLanguage });
+
+  //   console.log(history);
+  //   console.log(params);
+  //   // history.location.state.movie = {
+  //   //   title: "asdasd",
+  //   //   poster_path: "asd",
+  //   //   overview: "qwa",
+  //   //   vote_average: 6.7,
+  //   // };
+
+  //   return <div>not accesible through the url at the moment</div>;
+  // }
+
+  useEffect(() => {
+    if (!history.location?.state?.movie) {
+      const { id: movieId } = params;
+      // const getMovie = async () => {
+      //   const movie = await getMovie({ movieId, appLanguage });
+      //   return movie
+      // }
+      getMovie({ movieId, appLanguage }).then((gottenMovie) => {
+        setMovie(gottenMovie)
+      });
+      console.log(history);
+      console.log("peli", movie);
+      // history.location.state.movie = {
+      //   title: "asdasd",
+      //   poster_path: "asd",
+      //   overview: "qwa",
+      //   vote_average: 6.7,
+      // };
+
+      // return <div>not accesible through the url at the moment</div>;
+    } else {
+      // const movie = history.location.state.movie;
+      setMovie(history.location.state.movie)
+    }
+  }, []);
 
   const goHome = () => history.goBack();
 
+  if(!movie) return <div>loading...</div>
+ 
   return (
     <Wrapper>
       <TitleBar>

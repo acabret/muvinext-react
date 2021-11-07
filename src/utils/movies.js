@@ -32,3 +32,11 @@ export const discoverMovies = ({
     `${baseUrl}movies/discover${languageKey}${genreKey}${voteGteKey}${voteLteKey}${dateGteKey}${dateLteKey}`
   ).then((response) => response.json());
 };
+
+export const getMovie = ({ movieId, language }) => {
+  const languageKey = `?language=${language}`;
+
+  return fetch(`${baseUrl}movies/find/${movieId}${languageKey}`).then(
+    (response) => response.json()
+  );
+};
