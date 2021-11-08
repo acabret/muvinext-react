@@ -5,7 +5,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { getMovie } from "../utils/movies";
 import { useLanguage } from "../LanguageContext";
 import { useEffect, useState } from "react/cjs/react.development";
-import LoadingScreen from "./LoadingScreen"
+import LoadingScreen from "./LoadingScreen";
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 6%, 1);
@@ -131,59 +131,28 @@ const MovieDetails = () => {
   const appLanguage = useLanguage();
   const history = useHistory();
   const params = useParams();
-  const [movie, setMovie] = useState(null)
-  // if (!history.location?.state?.movie) {
-  //   const { id: movieId } = params;
-  //   const movie = getMovie({ movieId, appLanguage });
-
-  //   console.log(history);
-  //   console.log(params);
-  //   // history.location.state.movie = {
-  //   //   title: "asdasd",
-  //   //   poster_path: "asd",
-  //   //   overview: "qwa",
-  //   //   vote_average: 6.7,
-  //   // };
-
-  //   return <div>not accesible through the url at the moment</div>;
-  // }
+  const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    if (!history.location?.state?.movie) {
-      const { id: movieId } = params;
-      // const getMovie = async () => {
-      //   const movie = await getMovie({ movieId, appLanguage });
-      //   return movie
-      // }
-      getMovie({ movieId, appLanguage }).then((gottenMovie) => {
-        setMovie(gottenMovie)
-        console.log("gotten", gottenMovie)
-      })
-      .catch(err =>{
-        console.log(err)
-        console.log("peli", movie);
-      });
-      console.log(history);
-      
-      // history.location.state.movie = {
-      //   title: "asdasd",
-      //   poster_path: "asd",
-      //   overview: "qwa",
-      //   vote_average: 6.7,
-      // };
+    if (appLanguage) {
+      if (!history.location?.state?.movie) {
+        const { id: movieId } = params;
+        getMovie({ movieId, language: appLanguage }).then((response) => {
+          if (response.status == 404) return setMovie(404);
 
-      // return <div>not accesible through the url at the moment</div>;
-    } else {
-      // const movie = history.location.state.movie;
-      setMovie(history.location.state.movie)
+          return setMovie(response.payload);
+        });
+      } else {
+        setMovie(history.location.state.movie);
+      }
     }
-  }, []);
+  }, [appLanguage]);
 
   const goHome = () => history.goBack();
 
-  if(!movie && movie == null) return <LoadingScreen />
-  if( movie == undefined) return <div>404</div>
- 
+  if (!movie) return <LoadingScreen />;
+  if (movie == 404) return <div>404</div>; //replace this with better logic and presentation
+
   return (
     <Wrapper>
       <TitleBar>

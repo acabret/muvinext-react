@@ -25,8 +25,8 @@ const Spinning = keyframes`
 
 const Spinner = styled.div`
 //   position: relative;
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
   border-radius: 50%;
   border-width: 10px;
   border-style: solid;

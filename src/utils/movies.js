@@ -35,6 +35,7 @@ export const discoverMovies = ({
 
 export const getMovie = ({ movieId, language }) => {
   const languageKey = `?language=${language}`;
+  console.log(languageKey);
 
   return fetch(`${baseUrl}movies/find/${movieId}${languageKey}`).then(
     (response) => response.json()
