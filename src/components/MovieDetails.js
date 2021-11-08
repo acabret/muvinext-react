@@ -5,6 +5,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { getMovie } from "../utils/movies";
 import { useLanguage } from "../LanguageContext";
 import { useEffect, useState } from "react/cjs/react.development";
+import LoadingScreen from "./LoadingScreen"
 
 const Wrapper = styled.div`
   background-color: hsla(0, 0%, 6%, 1);
@@ -156,9 +157,14 @@ const MovieDetails = () => {
       // }
       getMovie({ movieId, appLanguage }).then((gottenMovie) => {
         setMovie(gottenMovie)
+        console.log("gotten", gottenMovie)
+      })
+      .catch(err =>{
+        console.log(err)
+        console.log("peli", movie);
       });
       console.log(history);
-      console.log("peli", movie);
+      
       // history.location.state.movie = {
       //   title: "asdasd",
       //   poster_path: "asd",
@@ -175,7 +181,8 @@ const MovieDetails = () => {
 
   const goHome = () => history.goBack();
 
-  if(!movie) return <div>loading...</div>
+  if(!movie && movie == null) return <LoadingScreen />
+  if( movie == undefined) return <div>404</div>
  
   return (
     <Wrapper>
