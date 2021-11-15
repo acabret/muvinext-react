@@ -1,3 +1,5 @@
+import { useRef } from "react";
+import { useIntersection } from "../hooks.js";
 import styled from "styled-components";
 import { baseImageUrl, imageSizes } from "../utils/config";
 import { Link } from "react-router-dom";
@@ -32,12 +34,36 @@ const StyledLink = styled(Link)`
 
 const MovieImage = styled.div`
   position: relative;
-  background-image: url(${({ poster_path }) =>
-    `${baseImageUrl}${imageSizes.small}${poster_path}`});
+  // background-image: url(${({ poster_path }) =>`${baseImageUrl}${imageSizes.small}${poster_path}`});
+  background-color:grey;
   background-position: center;
   background-size: cover;
   padding-top: calc(100% * 16 / 11);
   width: 100%;
+`;
+
+const MovieImagePlaceholder = styled.div`
+  position: relative;
+  // background-image: url(${({ poster_path }) =>
+    `${baseImageUrl}${imageSizes.small}${poster_path}`});
+  // background-position: center;
+  // background-size: cover;
+  background-color:gray;
+  color: white;
+  display: flex;
+  justify-content::center;
+  align-items: center;
+  padding-top: calc(100% * 16 / 11);
+  width: 100%;
+`;
+
+const MovieTitlePlaceholder = styled.div`
+  position: absolute;
+  top: 50%;
+  // left: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+  text-align: center;
 `;
 
 const MovieScoreWrapper = styled.div`
@@ -68,15 +94,27 @@ const MovieTitle = styled.h3`
 `;
 
 const MovieCover = ({ movie }) => {
+  const movieImageRef = useRef();
+  useIntersection(movieImageRef, (element) => {
+    // console.log("observing", element);
+    element.style.backgroundImage = `url(${baseImageUrl}${imageSizes.small}${movie.poster_path}`;
+    // element.style.fontSize = "2rem"
+  });
+
   return (
     <Wrapper>
       {/* <StyledLink to={`/movie/${movie.id}`}> */}
       <StyledLink to={{ pathname: `/movie/${movie.id}`, state: { movie } }}>
-        <MovieImage poster_path={movie.poster_path}>
+        <MovieImage ref={movieImageRef} poster_path={movie.poster_path}>
           <MovieScoreWrapper>
-            <MovieScore>{Number(movie.vote_average).toFixed(1)}</MovieScore>
+            <MovieScore>
+              {Number(movie.vote_average).toFixed(1)}
+            </MovieScore>
           </MovieScoreWrapper>
         </MovieImage>
+        {/* <MovieImagePlaceholder>
+          <MovieTitlePlaceholder>{movie.title}</MovieTitlePlaceholder>
+        </MovieImagePlaceholder> */}
         <MovieTitle>{movie.title}</MovieTitle>
       </StyledLink>
     </Wrapper>
